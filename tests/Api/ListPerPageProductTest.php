@@ -33,7 +33,7 @@ class ListPerPageProductTest extends ApiTestCase
         Assert::assertFalse($firstPage->hasPreviousPage());
         Assert::assertTrue($firstPage->hasNextPage());
         Assert::assertSame($this->server->getServerRoot() . '/api/rest/v1/products?page=2&with_count=true&pagination_type=page&limit=10', $firstPage->getNextLink());
-        Assert::assertEquals(count($firstPage->getItems()), 10);
+        Assert::assertCount(10, $firstPage->getItems());
 
         $secondPage = $firstPage->getNextPage();
 
@@ -51,7 +51,7 @@ class ListPerPageProductTest extends ApiTestCase
         Assert::assertFalse($secondPage->hasNextPage());
         Assert::assertTrue($secondPage->hasPreviousPage());
         Assert::assertSame($this->server->getServerRoot() . '/api/rest/v1/products?page=1&with_count=true&pagination_type=page&limit=10', $secondPage->getPreviousLink());
-        Assert::assertEquals(count($secondPage->getItems()), 1);
+        Assert::assertCount(1, $secondPage->getItems());
     }
 
     private function getFirstPage()
@@ -189,7 +189,7 @@ class ListPerPageProductTest extends ApiTestCase
                     "identifier":"dance_shoe",
                     "family":"sandals",
                     "groups":[
-                      
+
                     ],
                     "categories":[
                       "sandals"
@@ -214,7 +214,7 @@ class ListPerPageProductTest extends ApiTestCase
                     "identifier":"black_sneakers",
                     "family":"sneakers",
                     "groups":[
-                      
+
                     ],
                     "categories":[
                       "summer_collection",
